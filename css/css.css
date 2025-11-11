@@ -1,0 +1,300 @@
+/* Simple theme variables - reduced to essentials for easier editing */
+:root {
+  --bg: #f6efef;       /* app background */
+  --card-bg: #fff;     /* card / panel background */
+  --accent: #e45b5b;   /* primary action color */
+  --text: #333;        /* main text color */
+  --muted: #777;       /* secondary text color */
+  --radius: 16px;      /* border radius for cards/buttons */
+}
+
+/* Basic reset and box sizing (easy to understand) */
+* { box-sizing: border-box; }
+
+/* Body layout - centered mobile card look */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  color: var(--text);
+}
+
+#app {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding-bottom: 70px; /* plads til bottom-nav */
+}
+
+.screen.active {
+  display: block;
+}
+
+/* Splash */
+.splash-inner {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 26px;
+  box-shadow: var(--shadow-soft);
+}
+
+.logo-main {
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.splash-text {
+  margin-top: 24px;
+  color: var(--text-muted);
+}
+
+/* Top bar */
+.top-bar {
+  padding: 10px 16px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.status-time {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.top-icons {
+  display: flex;
+  gap: 8px;
+  font-size: 18px;
+}
+
+/* Page layout */
+.page {
+  padding: 0 16px 16px;
+}
+
+.page-home {
+  padding-top: 4px;
+}
+
+.page-explore {
+  padding-top: 8px;
+}
+
+.page-title {
+  margin: 0 0 12px;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.page-title.small {
+  font-size: 18px;
+}
+
+/* Cards */
+.card-section {
+  margin-bottom: 20px;
+}
+
+.card-section h2 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.card-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.game-card {
+  min-width: 150px;
+  max-width: 170px;
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-image {
+  width: 100%;
+  border-radius: 12px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  margin-bottom: 6px;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.game-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.game-heart {
+  font-size: 16px;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.game-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.game-card .btn-small {
+  align-self: flex-start;
+}
+
+/* Info cards */
+.info-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  padding: 14px 14px 16px;
+  margin-bottom: 16px;
+}
+
+.info-card h2 {
+  margin-top: 0;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+.info-card p {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+.info-card.highlight {
+  background: linear-gradient(145deg, #fff5f5, #ffe9e9);
+}
+
+/* Buttons */
+button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-small {
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: var(--accent);
+  border: 1px solid var(--accent-soft);
+}
+
+.btn-small {
+  background: #ffffff;
+  color: var(--accent);
+  border: 1px solid var(--accent-soft);
+}
+
+.full-width {
+  width: 100%;
+  margin: 8px 0 24px;
+}
+
+/* Filter chips */
+.filter-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0 12px;
+}
+
+.chip {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #e0d4d4;
+}
+
+/* Bottom navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 430px;
+  width: 100%;
+  height: 60px;
+  background: #ffffff;
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-btn {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.nav-btn.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Back button */
+.back-btn {
+  background: transparent;
+  border-radius: 999px;
+  padding: 4px 10px;
+  margin-right: 4px;
+  font-size: 18px;
+}

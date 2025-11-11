@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spilcaféen</title>
+  <link rel="stylesheet" href="css/css.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Splash / loading-screen -->
+    <section id="screen-splash" class="screen active">
+      <div class="splash-inner">
+        <div class="logo-circle">
+          <span class="logo-main">Spilcaféen</span>
+        </div>
+        <p class="splash-text">Vent venligst…</p>
+      </div>
+    </section>
+
+    <!-- Startside -->
+    <section id="screen-home" class="screen">
+      <header class="top-bar">
+        <span class="status-time">17.32</span>
+        <div class="top-icons">
+          <span>🔔</span>
+          <span>❤</span>
+        </div>
+      </header>
+
+      <main class="page page-home">
+        <h1 class="page-title">VELKOMMEN TIL, LARS!</h1>
+
+        <!-- Månedens spil -->
+        <section class="card-section">
+          <h2>MÅNEDENS SPIL</h2>
+          <div id="home-monthly" class="card-row">
+            <!-- Fyldes med JS -->
+          </div>
+        </section>
+
+        <!-- Hyggetid -->
+        <section class="info-card">
+          <h2>HYGGEDIT!</h2>
+          <p>
+            Spilcaféen er stedet, hvor du kan mødes med venner og prøve nye
+            brætspil, kortspil og klassikere. Tag et spil fra hylden og hyg!
+          </p>
+        </section>
+
+        <!-- Medlemsfordele -->
+        <section class="info-card highlight">
+          <h2>MEDLEMSFORDELE I NOVEMBER</h2>
+          <p>
+            I november kan alle medlemmer låne et nyt spil med hjem i en uge –
+            helt gratis!
+          </p>
+          <button class="btn-primary">Klik her!</button>
+        </section>
+
+        <!-- Lokation / slider-card (dummy) -->
+        <section class="info-card">
+          <h2>AARHUS · FREDENSGADE</h2>
+          <p>Vi anbefaler altid at man reserverer bord på forhånd.</p>
+          <button class="btn-secondary">Reserver nu!</button>
+        </section>
+      </main>
+
+      <!-- Bund-navigation -->
+      <nav class="bottom-nav">
+        <button class="nav-btn active" data-target="screen-home">
+          🏠<span>Forside</span>
+        </button>
+        <button class="nav-btn">
+          📅<span>Book</span>
+        </button>
+        <button class="nav-btn" data-target="screen-explore">
+          🔎<span>Udforsk</span>
+        </button>
+        <button class="nav-btn">
+          👤<span>Profil</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- Udforsk / spiloversigt -->
+    <section id="screen-explore" class="screen">
+      <header class="top-bar">
+        <button class="back-btn" data-target="screen-home">←</button>
+        <h1 class="page-title small">Udforsk spil</h1>
+        <div class="top-icons">
+          <span>❤</span>
+        </div>
+      </header>
+
+      <main class="page page-explore">
+        <!-- Filter chips -->
+        <div class="filter-row">
+          <button class="chip">Varighed</button>
+          <button class="chip">Antal</button>
+          <button class="chip">Genre</button>
+          <button class="chip">Alder</button>
+          <button class="chip">Stemning</button>
+        </div>
+
+        <!-- Sektioner fyldes med JS -->
+        <section class="card-section">
+          <h2>NYE SPIL</h2>
+          <div id="games-new" class="card-row"></div>
+        </section>
+
+        <section class="card-section">
+          <h2>MÅNEDENS SPIL</h2>
+          <div id="games-month" class="card-row"></div>
+        </section>
+
+        <section class="card-section">
+          <h2>GLEMTE SPIL</h2>
+          <div id="games-forgotten" class="card-row"></div>
+        </section>
+
+        <section class="card-section">
+          <h2>POPULÆRE SPIL</h2>
+          <div id="games-popular" class="card-row"></div>
+        </section>
+
+        <button class="btn-primary full-width">Se alle spil</button>
+      </main>
+
+      <!-- Bund-navigation genbrug -->
+      <nav class="bottom-nav">
+        <button class="nav-btn" data-target="screen-home">
+          🏠<span>Forside</span>
+        </button>
+        <button class="nav-btn">
+          📅<span>Book</span>
+        </button>
+        <button class="nav-btn active" data-target="screen-explore">
+          🔎<span>Udforsk</span>
+        </button>
+        <button class="nav-btn">
+          👤<span>Profil</span>
+        </button>
+      </nav>
+    </section>
+  </div>
+
+  <script src="js/js.js"></script>
+</body>
+</html>
