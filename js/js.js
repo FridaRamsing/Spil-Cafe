@@ -77,23 +77,50 @@ function createGameCard(game) {
 /* --------- Simpel detalje-visning (kan udskiftes med modal senere) --------- */
 
 function openGameDetails(game) {
-  const tekst = [
-    game.title,
-    "",
-    game.description || "",
-    "",
-    `Genre: ${game.genre}`,
-    `Sprog: ${game.language}`,
-    `Spilletid: ${game.playtime} min`,
-    `Spillere: ${game.players.min}-${game.players.max}`,
-    `Alder: ${game.age}+`,
-    `Sværhedsgrad: ${game.difficulty}`,
-    `Lokation: ${game.location}, hylde ${game.shelf}`,
-    "",
-    "Kort beskrivelse af regler:",
-    game.rules || "",
-  ].join("\n");
-  alert(tekst);
+  // Inject a Figma-like detail layout into the detail container
+  const container = document.getElementById("detail-container");
+  if (!container) return;
+
+  const html = `
+  <div class="detail-card">
+    <div class="detail-wrapper">
+      <div class="detail-body">
+        <div class="detail-panel">
+          <img class="detail-image" src="${game.image || 'https://placehold.co/300x200'}" alt="${escapeHtml(
+            game.title
+          )}" />
+          <div class="detail-content">
+            <h2 class="detail-title">${escapeHtml(game.title)}</h2>
+            <div class="detail-meta">${escapeHtml(game.genre || '')} · ${escapeHtml(
+            game.language || ''
+          )} · ${escapeHtml((game.players && game.players.min && game.players.max) ? `${game.players.min}-${game.players.max} spillere` : '')}</div>
+            <div class="detail-description">${escapeHtml(game.description || '')}</div>
+            <div class="detail-actions">
+              <button class="btn-primary">Reserver</button>
+              <button class="btn-secondary" id="detail-close">Tilbage</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+
+  container.innerHTML = html;
+  showScreen('screen-detail');
+
+  const closeBtn = document.getElementById('detail-close');
+  if (closeBtn) closeBtn.addEventListener('click', () => showScreen('screen-home'));
+}
+
+// small helper to avoid HTML injection from game data
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 /* --------- Sektioner (logik for "nye", "månedens", osv.) --------- */
@@ -160,7 +187,8 @@ function renderExplore() {
 /* --------- Hent JSON-fil --------- */
 
 function loadGames() {
-  fetch("games.json")
+  // Load games from the single app JSON file
+  fetch("app.json/app.json")
     .then((res) => res.json())
     .then((data) => {
       games = data;
@@ -168,7 +196,7 @@ function loadGames() {
       renderExplore();
     })
     .catch((err) => {
-      console.error("Kunne ikke loade games.json", err);
+      console.error("Kunne ikke loade app.json", err);
     });
 }
 

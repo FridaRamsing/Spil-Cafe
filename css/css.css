@@ -147,7 +147,9 @@ body {
   width: 100%;
   border-radius: 12px;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
+  object-fit: contain; /* change to 'fit' behavior */
+  background: linear-gradient(180deg, #fafafa, #f2f2f2); /* subtle letterbox */
+  display: block;
   margin-bottom: 6px;
 }
 
@@ -275,6 +277,122 @@ button {
   align-items: center;
 }
 
+/* -------------------- Responsive behavior (desktop-first) -------------------- */
+/* On larger screens we let the app expand to the available width so it
+   behaves like a normal website rather than a phone frame. */
+@media (min-width: 800px) {
+  body {
+    /* keep a light background but allow the content to stretch */
+    background: linear-gradient(180deg, #faf9f9 0%, #f6f6f6 100%);
+    align-items: stretch;
+    padding: 20px;
+  }
+
+  /* allow #app to grow, center it and use more of the screen */
+  #app {
+    width: 100%;
+    max-width: 1100px; /* page max width on desktop */
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: none;
+    min-height: 100vh;
+    background: var(--bg);
+  }
+
+  /* bottom nav spans the full width on desktop (no phone frame) */
+  .bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: none;
+    border-radius: 0;
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* Card and row responsiveness */
+@media (max-width: 420px) {
+  .game-card {
+    min-width: 140px;
+    max-width: 140px;
+  }
+  .card-row { gap: 8px; }
+}
+
+@media (min-width: 421px) and (max-width: 799px) {
+  .game-card { min-width: 150px; max-width: 160px; }
+}
+
+/* Compatibility aliases so existing classes keep working */
+:root {
+  --radius-card: var(--radius);
+  --shadow-soft: 0 8px 20px rgba(0,0,0,0.06);
+  --text-main: var(--text);
+  --text-muted: var(--muted);
+}
+
+/* Center important textual headings and info paragraphs */
+.page-title,
+.card-section h2,
+.info-card h2 {
+  text-align: center;
+}
+.info-card p { text-align: center; }
+
+/* Hyggetid image inside the info card */
+.info-card .hygge-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 12px auto 8px;
+  box-shadow: none; /* remove shadow */
+  background: transparent; /* remove background */
+}
+
+/* On wider viewports place the image to the right of the text */
+@media (min-width: 700px) {
+  .info-card {
+    display: flex;
+    flex-direction: row-reverse; /* swap visual order so image is left */
+    align-items: center;
+    gap: 8px; /* reduced gap */
+  }
+  .info-card .hygge-image {
+    max-width: 36%;
+    margin: 0 auto 0 0; /* push to the left */
+    border-radius: 8px;
+  }
+  .info-card p {
+    text-align: left; /* keep paragraph left-aligned when image is right */
+    flex: 1;
+  }
+  .info-card h2 { text-align: left; }
+}
+
+/* Ensure the info-content stacks heading and paragraph vertically */
+.info-card .info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* On small screens revert to stacked, centered layout */
+@media (max-width: 699px) {
+  .info-card {
+    display: block;
+  }
+  .info-card .info-content {
+    text-align: center;
+  }
+  .info-card .hygge-image {
+    max-width: 100%;
+    margin: 12px auto 8px;
+  }
+}
+
 .nav-btn {
   background: transparent;
   display: flex;
@@ -297,4 +415,89 @@ button {
   padding: 4px 10px;
   margin-right: 4px;
   font-size: 18px;
+}
+
+/* Detail screen styles (where Figma markup is injected) */
+#screen-detail { padding: 0; }
+#detail-container {
+  width: 100%;
+  min-height: 100vh;
+  background: #E9E0E0;
+  position: relative;
+}
+
+/* small helper so injected absolute elements behave reasonably */
+#detail-container .detail-card {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+/* Cleaner detail layout that follows homepage cards */
+.detail-wrapper {
+  padding: 20px 16px 120px; /* leave room for bottom nav */
+  display: flex;
+  justify-content: center;
+}
+
+.detail-body {
+  width: 100%;
+  max-width: 900px;
+}
+
+.detail-panel {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 18px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.detail-image {
+  width: 40%;
+  max-width: 260px;
+  border-radius: 12px;
+  object-fit: contain;
+  background: transparent;
+}
+
+.detail-content {
+  flex: 1;
+}
+
+.detail-title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.detail-meta {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.detail-description {
+  color: var(--text-main);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Responsive: stack image above content on small screens */
+@media (max-width: 700px) {
+  .detail-panel {
+    flex-direction: column;
+    align-items: center;
+  }
+  .detail-image { width: 80%; }
+  .detail-content { text-align: center; }
 }
